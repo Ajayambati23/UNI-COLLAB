@@ -1,0 +1,113 @@
+<% layout("boilerplate.ejs") %>
+
+<div class="row">
+  <h1 class="text-center">Edit Project</h1>
+  <div class="col-6 offset-3">
+    <form
+      action="/collab/<%= collab._id %>?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          name="collab[title]"
+          id="title"
+          value="<%= collab.title %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Skills</label>
+        <input
+          type="text"
+          class="form-control"
+          name="collab[skills]"
+          id="skills"
+          value="<%= collab.skills %>"
+          required
+        />
+      </div>
+      <!--       <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="collab[image]"
+          value="<%= collab.image %>"
+          required
+        />
+      </div> -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          name="collab[description]"
+          required
+        >
+<%= collab.description %>
+        </textarea>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="collab[email]"
+          value="<%= collab.email %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="number" class="form-label">Phone Number</label>
+        <input
+          type="number"
+          class="form-control"
+          id="number"
+          name="collab[number]"
+          value="<%= collab.number %>"
+          required
+        />
+      </div>
+      <div class="mb-3 custom-file">
+        <label for="formFileMultiple" class="form-label custom-file-label"
+          >Add Image(s)</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="image"
+          name="image"
+          multiple
+        />
+      </div>
+      <div class="mb-3">
+        <% collab.images.forEach(function(img, i) { %>
+
+        <img src="<%=img.url %>" class="img-thumbnail" alt="" />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            id="image-<%=i%>"
+            name="deleteImages[]"
+            value="<%=img.filename%>"
+          />
+        </div>
+        <label for="image-<%=i%>">Delete?</label>
+        <% })%>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">Submit</button>
+      </div>
+    </form>
+    <a href="/collab/<%= collab._id %>">Go Back</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/collab">All Projects</a>
+  </div>
+</div>

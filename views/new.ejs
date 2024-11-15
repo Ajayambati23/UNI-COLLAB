@@ -1,0 +1,98 @@
+<% layout("boilerplate.ejs") %>
+
+<div class="row">
+  <h1 class="text-center">New Project</h1>
+  <div class="col-6 offset-3">
+    <form
+      action="/collab"
+      method="POST"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          name="collab[title]"
+          id="title"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="skills" class="form-label">Skills </label>
+        <input
+          type="text"
+          class="form-control"
+          id="skills"
+          name="collab[skills]"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <!--       <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="collab[image]"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div> -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          name="collab[description]"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="collab[email]"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile Number</label>
+        <input
+          type="text"
+          class="form-control"
+          pattern="[6-9]{1}[0-9]{9}"
+          id="mobile"
+          name="collab[number]"
+          required
+        />
+        <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3 custom-file">
+        <label for="formFileMultiple" class="form-label">Add Image(s)</label>
+        <div class="custom-file-label"></div>
+        <input
+          class="form-control"
+          type="file"
+          id="image"
+          name="image"
+          multiple
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">Add Project</button>
+      </div>
+    </form>
+    <a href="/collab">Go Back</a>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<% layout("boilerplate.ejs") %>
+<div class="row mb-3">
+  <div class="col-6 offset-3">
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <% collab.images.forEach((img,i)=>{ %>
+        <div class="carousel-item <%= i===0?'active':' ' %>">
+          <img src="<%= img.url %>" class="d-block w-100" alt="" />
+        </div>
+        <% }) %>
+      </div>
+      <% if(collab.images.length >1){ %>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <% } %>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= collab.title %></h5>
+        <p class="card-text">Skills: <%= collab.skills %></p>
+        <p class="card-text"><%= collab.description %></p>
+        <p class="card-text text-muted">
+          Posted By: <%= collab.author.username %>
+        </p>
+        <h5 class="card-text">Contact Me:</h5>
+        <p class="card-text"><b>Phone Number: </b><%= collab.number %></p>
+        <p class="card-text"><b>Mail: </b><%= collab.email %></p>
+      </div>
+      <!--       <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= collab.location %></li>
+        <li class="list-group-item">$ <%= collab.price %>/night</li>
+      </ul> -->
+      <% if(currentUser && collab.author.equals(currentUser._id)){ %>
+      <div class="card-body">
+        <a href="/collab/<%= collab.id %>/edit" class="card-link"
+          ><button class="btn btn-info">Edit</button></a
+        >
+        <form
+          action="/collab/<%= collab._id %>?_method=DELETE"
+          method="post"
+          class="d-inline"
+        >
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <div class="mx-4 mb-3"><a href="/collab">Go Back</a></div>
+      <% } %>
+    </div>
+    <br />
+  </div>
+</div>
